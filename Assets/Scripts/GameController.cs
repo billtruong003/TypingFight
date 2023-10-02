@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
         _audioManager.PlaySound("BattleTheme");
 
         IsRunning = false;
-        
+
         // Initialise StopWatch
         RestartStopWatch();
 
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
         //Restart Countdown
         RestartCountdown();
     }
-        
+
     private void MainMenu()
     {
         _audioManager.PauseSound("BattleTheme");
@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour
     private void RunStopWatch()
     {
         _stopwatch += Time.deltaTime;
-        stopwatchGUI.text = _stopwatch.ToString("#.##");
+        stopwatchGUI.text = _stopwatch.ToString("#");
     }
 
     public void StopStopWatch()
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
     private void RestartStopWatch()
     {
         _stopwatch = 0f;
-        stopwatchGUI.text = "0.00";
+        stopwatchGUI.text = "0";
     }
 
     private void RestartCountdown()

@@ -3,70 +3,93 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "EnvironmentConfig", menuName = "Config/EnvironmentConfig")]
-public class EnvironmentConfig : ScriptableObject
+namespace Environment
 {
-    public List<EnvironmentData> sprites;
-    public Color DayCol;
-    public Color NightCol;
-    [Serializable]
-    public class EnvironmentSprite
+    [CreateAssetMenu(fileName = "EnvironmentConfig", menuName = "Config/EnvironmentConfig")]
+    public class EnvironmentConfig : ScriptableObject
     {
-        public string EnvironmentName;
-        public Sprite Ground;
-        public List<Sprite> Grass1;
-        public List<Sprite> Grass2;
-        public Sprite Flower;
-        public List<Sprite> Leaf;
-        public Sprite Tree;
-        public Sprite Rock;
+        public List<EnvironmentData> SpritesData;
+        public Color DayCol;
+        public Color NightCol;
+        public int GetSpritesIndex(string currentEnvironment)
+        {
+            int index = 0;
+            foreach (EnvironmentData data in SpritesData)
+            {
+                Debug.Log($"Current Environment: {currentEnvironment} |" + data.Sprites.EnvironmentName);
+                if (currentEnvironment == data.Sprites.EnvironmentName)
+                {
 
-        public string GetEnvironmentName()
-        {
-            return this.EnvironmentName;
+                    return index;
+                }
+                index++;
+            }
+            return 0;
         }
-        public Sprite GetGround()
+        [Serializable]
+        public class EnvironmentSprite
         {
-            return this.Ground;
+            public string EnvironmentName;
+            public Sprite Ground;
+            public List<Sprite> Grass1;
+            public List<Sprite> Grass2;
+            public Sprite Flower;
+            public List<Sprite> Leaf;
+            public Sprite Tree;
+            public Sprite Rock;
+
+            public string GetEnvironmentName()
+            {
+                return this.EnvironmentName;
+            }
+            public Sprite GetGround()
+            {
+                return this.Ground;
+            }
+            public Sprite GetGrass1()
+            {
+                Sprite spriteUse = Grass1[UnityEngine.Random.Range(0, Grass1.Count)];
+                return spriteUse;
+            }
+            public Sprite GetGrass2()
+            {
+                Sprite spriteUse = Grass2[UnityEngine.Random.Range(0, Grass2.Count)];
+                return spriteUse;
+            }
+            public Sprite GetFlower()
+            {
+                Sprite spriteUse = Flower;
+                return spriteUse;
+            }
+            public Sprite GetLeaf()
+            {
+                Sprite spriteUse = Leaf[UnityEngine.Random.Range(0, Leaf.Count)];
+                return spriteUse;
+            }
+            public Sprite GetTrees()
+            {
+                return this.Tree;
+            }
+            public Sprite GetRock()
+            {
+                return this.Rock;
+            }
         }
-        public Sprite GetGrass1()
+        [Serializable]
+        public class EnvironmentData
         {
-            Sprite spriteUse = Grass1[UnityEngine.Random.Range(0, Grass1.Count)];
-            return spriteUse;
+            public Environment EnvironmentType;
+            public EnvironmentSprite Sprites;
+            public string GetEnv()
+            {
+                return Sprites.GetEnvironmentName();
+            }
         }
-        public Sprite GetGrass2()
+        public enum Environment
         {
-            Sprite spriteUse = Grass2[UnityEngine.Random.Range(0, Grass2.Count)];
-            return spriteUse;
+            NONE,
+            DAY,
+            NIGHT,
         }
-        public Sprite GetLeaf()
-        {
-            Sprite spriteUse = Leaf[UnityEngine.Random.Range(0, Leaf.Count)];
-            return spriteUse;
-        }
-        public Sprite GetTrees()
-        {
-            return this.Tree;
-        }
-        public Sprite GetRock()
-        {
-            return this.Rock;
-        }
-    }
-    [Serializable]
-    public class EnvironmentData
-    {
-        public Environment EnvironmentType;
-        public EnvironmentSprite Sprites;
-        public string GetEnv()
-        {
-            return Sprites.GetEnvironmentName();
-        }
-    }
-    public enum Environment
-    {
-        NONE,
-        DAY,
-        NIGHT,
     }
 }

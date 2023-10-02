@@ -11,7 +11,7 @@ namespace EasyUI.Modals
     public class Modal
     {
         public Sprite title;
-        public string message = "Your speed was <color=#621D19><b>0 WPM</b></color> with <color=#621D19><b>0%</b></color> accuracy!";
+        public string message = "Your speed was <color=#E19344><b>0 WPM</b></color> with <color=#E19344><b>0%</b></color> accuracy!";
         public UnityAction onPlayAgain;
         public UnityAction onMainMenu;
     }

@@ -154,7 +154,7 @@ public class WordsManager : MonoBehaviour
         string substrB = text.text.Substring(markIndex, 1);
         string substrC = text.text.Substring(markIndex + 1);
 
-        text.text = substrA + "<color=#4BB7B4>" + substrB + "</color>" + substrC;
+        text.text = substrA + "<color=#ffffff>" + substrB + "</color>" + substrC;
     }
 
     public bool GetTyping()
